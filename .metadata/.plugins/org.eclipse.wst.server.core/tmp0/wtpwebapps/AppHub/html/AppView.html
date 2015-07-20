@@ -1,0 +1,83 @@
+<div id="div1" class="fluid PageHeader">
+	<p>
+		<img ng-src="images/PhanesoftLogo.jpg"
+			style="float: left; position: absolute; top: 0; left: 0; height: 130px; width: 130px;"></img>
+	</p>
+	<p
+		style="float: left; width: 40%; height: 50%; font-size: 40px; color: #F80000;"
+		ng-click="changeWindow()">{{app.appName}}</p>
+	<pre class="headerLink">	</pre>
+	<p class="headerLink">
+		<a href="#/addApp" ng-if="LogedInUser.isAuthenticated == true">Add
+			App</a>
+	</p>
+	<pre class="headerLink" ng-if="LogedInUser.isAuthenticated == true">|</pre>
+	<p class="headerLink">
+		<a href="#/login" title="Login"
+			ng-if="LogedInUser.isAuthenticated == false">Login</a>
+		<!-- <div>Hello {{LogedInUser.user.first}}!</div>  -->
+		<a href="#/" title="Logout" ng-click="LogedInUser.logout()"
+			ng-if="LogedInUser.isAuthenticated == true">Logout</a>
+	</p>
+	<pre class="headerLink" ng-if="LogedInUser.isAuthenticated == true">|</pre>
+	<p class="headerLink">
+		<a href="#/">Home</a>
+	</p>
+</div>
+<div class="gridContainer clearfix">
+	<div class="gridContainer clearfix">
+		<div></div>
+		<br></br>
+		<p>
+			<img ng-src="{{app.appLocalImage}}" ng-hide="!app.appLocalImage"
+				class="AppImage"> <img ng-src="images/blank_ios.jpg"
+				ng-show="!app.appLocalImage" class="AppImage">
+		</p>
+		<div style="float: left; width: 60%;">
+			<div>
+				<p class="AppTitle" style="text-align: left;"
+					ng-click="changeWindow()">{{app.appName}}</p>
+			</div>
+			<div>
+				<p class="AppPrice" style="text-align: left;">${{app.appCost}}</p>
+			</div>
+		</div>
+		<div style="width: 80%">
+			<br />
+			<p class="AppDescrip">Description: {{app.description}}</p>
+			<p class="AppRating">Rating: {{app.appRating}}/5</p>
+		</div>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<div style="float: left; text-align: left;">
+			<div class="AppDescip">
+				<p>Developer: {{app.appDeveloper}}</p>
+			</div>
+			<div class="AppDescip">
+				<p>Platform: {{app.appPlatform}}</p>
+			</div>
+		</div>
+		<div class="fluid"
+			style="margin-left: 10%; width: 80%; border: solid; border-color: blue; border-width: 1px;">
+			<p style="text-align: center;">-------------------------------Comments------------------------------------</p>
+			<ul
+				style="text-align: center; list-style-type: circle; word-wrap: break-word;" ng-repeat="comment in app.appComments">
+				<li>
+					<p>{{comment.userName}}: {{comment.appComment}}</p>
+				</li>
+			</ul>
+		</div>
+		<div class="fluid" style="margin-bottom: 125px;"></div>
+		<div
+			style="position: fixed; top: 85%; height: 15%; width: 65%; border: solid; border-color: black; border-width: 2px; background-color: #D0D0D0; opacity: .9;">
+
+			<div style="margin-top: 10px; height: 90px;">
+				<label for="Comment" style="text-color: black">Add Comment:</label>
+				<input type="comment" name="comment" id="comment"
+					style="width: 60%; height: 80% wrap: word-wrap;" ng-model="newComment.appComment">
+				<button ng-click="createNewComment()" style="margin-top: 30px;">Add Comment</button>
+			</div>
+		</div>
+	</div>
+</div>
